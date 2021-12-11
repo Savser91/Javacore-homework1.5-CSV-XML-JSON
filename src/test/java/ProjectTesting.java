@@ -1,7 +1,7 @@
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Assertions;
-import java.util.List;
+import java.util.*;
 
 public class ProjectTesting {
 
@@ -26,7 +26,7 @@ public class ProjectTesting {
     }
 
     @Test
-    public void parseCSV_AddWrongName_ReturnsNull() {
+    public void parseCSV_AddWrongFileName_ReturnsNull() {
         String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
         String fileName = "data.css";
         List<Employee> list = Main.parseCSV(columnMapping, fileName);
@@ -48,7 +48,5 @@ public class ProjectTesting {
     public void readString_NullString_ReturnsNull() {
         Assertions.assertTrue(Main.readString(null) == null);
     }
-
-
 
 }
