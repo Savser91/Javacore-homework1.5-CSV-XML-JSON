@@ -49,4 +49,43 @@ public class ProjectTesting {
         Assertions.assertTrue(Main.readString(null) == null);
     }
 
+
+    //ДОРАБОТКА
+
+    // Проверяем, что метод ListToJson возвращает пустую строку, если на входе пустой лист
+    @Test
+    public void check_ListToJsonReturnsEmptyStringIfInputListEmpty() {
+        List<Employee> list = new ArrayList<>();
+        String expected = "[]";
+
+        Assertions.assertEquals(expected, Main.listToJson(list));
+    }
+
+    // Создаем лист с 1-м сотрудником, вручную генерим строку и проверяем, что метод отдает такую же строку
+    @Test
+    public void check_ListToJsonReturnsCorrectString() {
+        Employee employee = new Employee(0, "Ivan", "Ivanov", "RUS", 29);
+        List<Employee> list = new ArrayList<>();
+        list.add(employee);
+
+        String expected = "[{\"id\":0,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"country\":\"RUS\",\"age\":29}]";
+        Assertions.assertEquals(expected, Main.listToJson(list));
+    }
+
+    // Проверка, что все ок, если в листе больше 1 сотрудника
+    @Test
+    public void check_ListToJsonReturnsCorrectStringIfTwoOrMore() {
+        Employee employee = new Employee(0, "Ivan", "Ivanov", "RUS", 29);
+        Employee employee2 = new Employee(1, "Johannes", "Klaebo", "NOR", 26);
+        List<Employee> list = new ArrayList<>();
+        list.add(employee);
+        list.add(employee2);
+
+        String expected = "[{\"id\":0,\"firstName\":\"Ivan\",\"lastName\":\"Ivanov\",\"country\":\"RUS\",\"age\":29}," +
+                "{\"id\":1,\"firstName\":\"Johannes\",\"lastName\":\"Klaebo\",\"country\":\"NOR\",\"age\":26}]";
+        Assertions.assertEquals(expected, Main.listToJson(list));
+    }
+
+
+
 }
